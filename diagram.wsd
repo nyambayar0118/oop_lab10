@@ -1,0 +1,70 @@
+@startuml lab8
+class Point {
+    #coordX: float
+    #coordY: float
++Point()
++Point(float,float)
++void setX(float)
++void setY(float)
++float getX()
++float getY()
+}
+
+abstract class Shape {
+   #name: char*
+    #pointA: Point
+#side: float
++void print()
+}
+
+abstract class TwoDShape extends Shape {
+#static int count
++float getPerimeter()
++float getArea()
++TwoDShape()
++TwoDShape(float,float,float,char*)
++~TwoDShape()
++static int getCount()
++static  void incCount()
+}
+
+class Square extends TwoDShape {
+    #pointB: Point
+#pointC: Point
+#pointD: Point
++void print()
++float getPerimeter()
++float getArea()
++Square()
++Square(float,float,float,char*)
++~Square()
+}
+
+class Circle extends TwoDShape {
++void print()
++float getPerimeter()
++float getArea()
++Circle()
++Circle(float,float,float,char*)
++~Circle()
+}
+
+class Triangle extends TwoDShape {
+#pointB: Point
+#pointC: Point
++void print()
++float getPerimeter()
++float getArea()
++Triangle()
++Triangle(float,float,float,char*)
++~Triangle()
+}
+
+class TwoDBusiness {
+static void areaSort(TwoDShape**, int)
+static void perimeterSort(TwoDShape**, int)
+}
+
+Shape "1" *-- "1...*" Point: is made of
+TwoDBusiness "1"--> "*" TwoDShape: manages
+@enduml
