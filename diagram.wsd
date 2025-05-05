@@ -14,15 +14,15 @@ abstract class Shape {
    #name: char*
     #pointA: Point
 #side: float
-+void print()
++virtual void print()
 }
 
 abstract class TwoDShape extends Shape {
 #static int count
-+float getPerimeter()
-+float getArea()
++virtual float getPerimeter()
++virtual float getArea()
 +TwoDShape()
-+TwoDShape(float,float,float,char*)
++TwoDShape(float,float,float,const char*)
 +~TwoDShape()
 +static int getCount()
 +static  void incCount()
@@ -36,7 +36,7 @@ class Square extends TwoDShape {
 +float getPerimeter()
 +float getArea()
 +Square()
-+Square(float,float,float,char*)
++Square(float,float,float,const char*)
 +~Square()
 }
 
@@ -45,7 +45,7 @@ class Circle extends TwoDShape {
 +float getPerimeter()
 +float getArea()
 +Circle()
-+Circle(float,float,float,char*)
++Circle(float,float,float,const char*)
 +~Circle()
 }
 
@@ -56,15 +56,39 @@ class Triangle extends TwoDShape {
 +float getPerimeter()
 +float getArea()
 +Triangle()
-+Triangle(float,float,float,char*)
++Triangle(float,float,float,const char*)
 +~Triangle()
 }
 
 class TwoDBusiness {
-static void areaSort(TwoDShape**, int)
-static void perimeterSort(TwoDShape**, int)
+static void areaSort(linkedList<TwoDShape*>&)
+static void perimeterSort(linkedList<TwoDShape*>&)
+}
+
+class Node {
+-T data
+-Node *next
+-Node *pre
++Node(const T&)
+}
+
+class linkedList<T> {
+-Node *head
+-Node *tail
+-int len
++linkedList()
++~linkedList()
++void add(const T&)
++void insert(const T&, int)
++T get(int)
++void deleteL(int)
+int length()
 }
 
 Shape "1" *-- "1...*" Point: is made of
-TwoDBusiness "1"--> "*" TwoDShape: manages
+TwoDBusiness ..> TwoDShape: sorts
+TwoDBusiness ..> linkedList: uses
+linkedList "1" *-- "*" Node: contains
+Node "1" o-- "0..2" Node: points to
+
 @enduml
