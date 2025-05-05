@@ -1,4 +1,4 @@
-@startuml lab8
+@startuml lab10
 class Point {
     #coordX: float
     #coordY: float
